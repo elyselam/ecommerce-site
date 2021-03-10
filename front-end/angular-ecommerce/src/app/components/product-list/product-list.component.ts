@@ -28,16 +28,14 @@ export class ProductListComponent implements OnInit {
       this.currentCategoryId = 1;
     }
     // //assign results to Product[]
-    // this.productService.getProductList()
-    //   .subscribe(data => {
-    //     this.products = data
-    //   })
+    this.productService.getProductList(this.currentCategoryId)
+      .subscribe(data => {
+        this.products = data
+      })
   }
   ngOnInit(): void {
     this.route.paramMap.subscribe(()=> {
       this.listProducts()
     })
   }
-
-
 }

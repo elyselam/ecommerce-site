@@ -12,5 +12,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     //behind the scene, Spring will execute a query similar to "select * from product where category_id=?"
     //spring data Rest will automatically exposes endpoint localhost:8080/api/products/search/findByCategoryId?id=#
+    //Page: sublist of a list of objects, has info like totalElements, totalPages, currentPosition, ...
+    //Pageable: pagination info: pageNumber, pageSize, previous, next, ...
     Page<Product> findByCategoryId(@RequestParam("id") Long id, Pageable pageable);
 }
