@@ -6,6 +6,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import {HttpClientModule} from "@angular/common/http";
 import {ProductService} from "./services/product.service";
 import {RouterModule, Routes} from "@angular/router";
+import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 
 //when path matches, create a new instance of component
 //goes most specific to most generic
@@ -21,6 +22,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     ProductListComponent,
+    ProductCategoryMenuComponent,
 
   ],
   imports: [
