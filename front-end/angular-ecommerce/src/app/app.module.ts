@@ -11,11 +11,11 @@ import { ProductCategoryMenuComponent } from './components/product-category-menu
 //when path matches, create a new instance of component
 //goes most specific to most generic
 const routes: Routes = [
-  {path: 'category/:id', component: ProductListComponent},
+  {path: 'category/:id/:name', component: ProductListComponent}, //constructs routes using the param val
   {path: 'category', component: ProductListComponent },
   {path: 'products', component: ProductListComponent },
   {path: '', redirectTo: '/products', pathMatch: 'full'},
-  {path: '**', redirectTo: '/products', pathMatch: 'full'}
+  {path: '**', redirectTo: '/products', pathMatch: 'full'},
 ];
 
 @NgModule({

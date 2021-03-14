@@ -39,7 +39,9 @@ export class ProductService {
   getProductCategories(): Observable<ProductCategory[]> {
       //calls rest api. maps json data object from Spring Data Rest to ProductCategory array
     return this.httpClient.get<GetResponseProductCategory>(this.categoryUrl)
-      .pipe(map(response => response._embedded.productCategory)
+      .pipe(map(response =>
+        // console.log(response._embedded.productCategory);
+      response._embedded.productCategory)
     );
   }
 }

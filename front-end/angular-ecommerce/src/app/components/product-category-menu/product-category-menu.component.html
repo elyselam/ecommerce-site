@@ -8,7 +8,8 @@
 <!--        <a routerLink="/category/2" routerLinkActive="active-link">Coffee Mugs</a>-->
 <!--      </li>-->
       <li *ngFor="let c of productCategories" >
-        <a routerLink="/category/{{c.id}}" routerLinkActive="active-link">
+<!--        adding another param 'name' to category name with {{c.categoryName}}-->
+        <a routerLink="/category/{{c.id}} {{c.categoryName}}" routerLinkActive="active-link">
           {{c.categoryName}}
         </a>
 
