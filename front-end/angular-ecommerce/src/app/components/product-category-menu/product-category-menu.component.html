@@ -9,10 +9,12 @@
 <!--      </li>-->
       <li *ngFor="let c of productCategories" >
 <!--        adding another param 'name' to category name with {{c.categoryName}}-->
-        <a routerLink="/category/{{c.id}} {{c.categoryName}}" routerLinkActive="active-link">
+<!--        <a routerLink="/category/{{c.id}}/{{c.categoryName}}" routerLinkActive="active-link">-->
+<!--          {{c.categoryName}}-->
+<!--        </a>-->
+        <a routerLink="/category/{{c.id}}/{{c.categoryName}}" routerLinkActive="active-link">
           {{c.categoryName}}
         </a>
-
       </li>
     </ul>
   </nav>

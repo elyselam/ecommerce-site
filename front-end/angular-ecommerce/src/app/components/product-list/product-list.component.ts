@@ -10,7 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ProductListComponent implements OnInit {
 
-  products: Product[];
+  products: Product[]; //products array from http://localhost:8080/api/products
   currentCategoryId: number;
   currentCategoryName: string;
 
@@ -28,9 +28,13 @@ export class ProductListComponent implements OnInit {
       this.currentCategoryId = +this.route.snapshot.paramMap.get('id');
       this.currentCategoryName = this.route.snapshot.paramMap.get('name');
     } else {
+
       this.currentCategoryId = 1;
       this.currentCategoryName = 'Books'; //adding this so it displays Books as default
+
     }
+    console.log(this.currentCategoryId, "+ ", this.currentCategoryName);
+
 
     // //assign results to Product[]
     this.productService.getProductList(this.currentCategoryId)
