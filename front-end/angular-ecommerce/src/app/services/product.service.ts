@@ -18,11 +18,8 @@ export class ProductService {
 
   getProductList(theCategoryId: number): Observable<Product[]> {
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`;
-    return this.httpClient.get<GetResponseProducts>(searchUrl)
-      .pipe(map(response => response._embedded.products)
-      );
+    return this.getProducts(searchUrl);
   }
-
 
   getProductCategories(): Observable<ProductCategory[]> {
     //calls rest api. maps json data object from Spring Data Rest to ProductCategory array
@@ -33,10 +30,18 @@ export class ProductService {
   }
 
   searchProducts(theKeyword: string): Observable<Product[]> {
+    // passing theKeyword value into the name parameter
     const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${theKeyword}`;
+    // return this.httpClient.get<GetResponseProducts>(searchUrl)
+    //   .pipe(map(response => response._embedded.products));
+    return this.getProducts(searchUrl);
+  }
+
+  private getProducts(searchUrl: string): Observable<Product[]>{
     return this.httpClient.get<GetResponseProducts>(searchUrl)
       .pipe(map(response => response._embedded.products));
   }
+}
 
   interface GetResponseProducts {
   _embedded: {
