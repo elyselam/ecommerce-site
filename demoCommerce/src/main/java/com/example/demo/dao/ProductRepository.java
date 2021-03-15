@@ -15,4 +15,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     //Page: sublist of a list of objects, has info like totalElements, totalPages, currentPosition, ...
     //Pageable: pagination info: pageNumber, pageSize, previous, next, ...
     Page<Product> findByCategoryId(@RequestParam("id") Long id, Pageable pageable);
+
+
+    //select * from product
+    //where name like concat('%', :name, '%')
+    //http://localhost:8080/api/products/search/findByNameContaining?name=python <=test by changing name in url
+    Page<Product> findByNameContaining(@RequestParam("name") String name, Pageable pageable);
 }

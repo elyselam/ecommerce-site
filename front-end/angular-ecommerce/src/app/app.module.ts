@@ -7,10 +7,12 @@ import {HttpClientModule} from "@angular/common/http";
 import {ProductService} from "./services/product.service";
 import {RouterModule, Routes} from "@angular/router";
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
+import { SearchComponent } from './components/search/search.component';
 
 //when path matches, create a new instance of component
 //goes most specific to most generic
 const routes: Routes = [
+  {path: 'search/:keyword', component: ProductListComponent},
   {path: 'category/:id/:name', component: ProductListComponent}, //constructs routes using the param val
   {path: 'category', component: ProductListComponent },
   {path: 'products', component: ProductListComponent },
@@ -23,6 +25,7 @@ const routes: Routes = [
     AppComponent,
     ProductListComponent,
     ProductCategoryMenuComponent,
+    SearchComponent,
 
   ],
   imports: [
