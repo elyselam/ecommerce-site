@@ -41,6 +41,13 @@ export class ProductService {
     return this.httpClient.get<GetResponseProducts>(searchUrl)
       .pipe(map(response => response._embedded.products));
   }
+
+  //build url based on product id
+  // http://localhost:4200/products/40   => returns product detail of 1 selection
+  getProduct(theProductId: number) {
+    const productUrl = `${this.baseUrl}/${theProductId}`;
+    return this.httpClient.get<Product>(productUrl);
+  }
 }
 
   interface GetResponseProducts {
