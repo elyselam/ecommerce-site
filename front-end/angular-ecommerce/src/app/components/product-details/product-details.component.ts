@@ -25,6 +25,7 @@ export class ProductDetailsComponent implements OnInit {
   private handleProductDetails() {
     //convert id param string to num
     const theProductId: number = +this.route.snapshot.paramMap.get('id');
+
     this.productService.getProduct(theProductId).subscribe(
       data => {
         this.product = data;

@@ -37,15 +37,18 @@ export class ProductService {
     return this.getProducts(searchUrl);
   }
 
+
   private getProducts(searchUrl: string): Observable<Product[]>{
     return this.httpClient.get<GetResponseProducts>(searchUrl)
       .pipe(map(response => response._embedded.products));
   }
-
-  //build url based on product id
+  //getting products from product-detail
+  //build url based on product id at 8080/api/products/${theProductId}
   // http://localhost:4200/products/40   => returns product detail of 1 selection
   getProduct(theProductId: number) {
     const productUrl = `${this.baseUrl}/${theProductId}`;
+    //returns an observable
+    //no need to unwrap the json bc Spring enables direct access of "id" property in Product class
     return this.httpClient.get<Product>(productUrl);
   }
 }

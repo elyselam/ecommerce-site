@@ -13,7 +13,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 //when path matches, create a new instance of component
 //goes most specific to most generic
 const routes: Routes = [
-  {path: 'product/:id', component: ProductDetailsComponent},
+  {path: 'products/:id', component: ProductDetailsComponent},
   {path: 'search/:keyword', component: ProductListComponent},
   {path: 'category/:id/:name', component: ProductListComponent}, //constructs routes using the param val
   {path: 'category', component: ProductListComponent },
