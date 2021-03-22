@@ -29,6 +29,29 @@ passing over {path: 'products/:id', component: ProductDetailsComponent}
             no products found
         </div>
       </div>
+
+<!--      footer -->
+      <div class="footer-pagination">
+        <div class="row">
+          <div class="col-md-6"></div>
+          <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-9" style="padding-left: 30%">
+<!--                        params of ngb-pagination = properties of productListComp-->
+<!--  2 way binding, banana. displays the number on the footer, and that num is updated & highlighted when clicked    -->
+ <!-- 1 way binding, when productListComp updates pageSize, UI is updated automatically-->
+              <ngb-pagination [(page)]="thePageNumber"
+                              [pageSize]="thePageSize"
+                              [collectionSize]="theTotalElements"
+                              (pageChange)="listProducts()"> <!--event-binding, user clicks a page link calls method listProducts()-->
+
+              </ngb-pagination>
+
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

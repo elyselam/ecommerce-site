@@ -16,6 +16,16 @@ export class ProductService {
   constructor(private httpClient: HttpClient) {
   }
 
+  //getting products from product-detail
+  //build url based on product id at 8080/api/products/${theProductId}
+  // http://localhost:4200/products/40   => returns product detail of 1 selection
+  getProduct(theProductId: number) {
+    const productUrl = `${this.baseUrl}/${theProductId}`;
+    //returns an observable
+    //no need to unwrap the json bc Spring enables direct access of "id" property in Product class
+    return this.httpClient.get<Product>(productUrl);
+  }
+
   getProductList(theCategoryId: number): Observable<Product[]> {
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`;
     return this.getProducts(searchUrl);
@@ -38,24 +48,34 @@ export class ProductService {
   }
 
 
-  private getProducts(searchUrl: string): Observable<Product[]>{
+  private getProducts(searchUrl: string): Observable<Product[]> {
     return this.httpClient.get<GetResponseProducts>(searchUrl)
       .pipe(map(response => response._embedded.products));
   }
-  //getting products from product-detail
-  //build url based on product id at 8080/api/products/${theProductId}
-  // http://localhost:4200/products/40   => returns product detail of 1 selection
-  getProduct(theProductId: number) {
-    const productUrl = `${this.baseUrl}/${theProductId}`;
-    //returns an observable
-    //no need to unwrap the json bc Spring enables direct access of "id" property in Product class
-    return this.httpClient.get<Product>(productUrl);
-  }
-}
 
+
+
+  getProductListPaginate(thePage: number,
+                         thePageSize: number,
+                         theCategoryId: number): Observable<GetResponseProducts> {
+                    //http://localhost:8080/api/products/?page=0&size=10
+    const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`
+    + `&page=${thePage}&size={thePageSize}`;
+    return this.httpClient.get<GetResponseProducts>(searchUrl);
+  }
+
+}
   interface GetResponseProducts {
   _embedded: {
     products: Product[];
+  }
+  //Spring Data Rest supports pagination out of the box
+  //http://localhost:8080/api/products/?page=0&size=10 scroll to the bottom
+  page: {
+    size: number, //size of page, in this case: size 10
+    totalElements: number, //all 100 items in db
+    totalPages: number, // 100/10 = 10 pages
+    number: number //current page num
   }
 }
 
