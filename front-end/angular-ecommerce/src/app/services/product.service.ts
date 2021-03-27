@@ -15,7 +15,6 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) {
   }
-
   //getting products from product-detail
   //build url based on product id at 8080/api/products/${theProductId}
   // http://localhost:4200/products/40   => returns product detail of 1 selection
@@ -26,10 +25,21 @@ export class ProductService {
     return this.httpClient.get<Product>(productUrl);
   }
 
+  getProductListPaginate(thePage: number,
+                         thePageSize: number,
+                         theCategoryId: number): Observable<GetResponseProducts> {
+    //http://localhost:8080/api/products/?page=0&size=10
+    const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`
+      + `&page=${thePage}&size=${thePageSize}`;
+    return this.httpClient.get<GetResponseProducts>(searchUrl);
+  }
+
   getProductList(theCategoryId: number): Observable<Product[]> {
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`;
     return this.getProducts(searchUrl);
   }
+
+
 
   getProductCategories(): Observable<ProductCategory[]> {
     //calls rest api. maps json data object from Spring Data Rest to ProductCategory array
@@ -55,14 +65,7 @@ export class ProductService {
 
 
 
-  getProductListPaginate(thePage: number,
-                         thePageSize: number,
-                         theCategoryId: number): Observable<GetResponseProducts> {
-                    //http://localhost:8080/api/products/?page=0&size=10
-    const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`
-    + `&page=${thePage}&size={thePageSize}`;
-    return this.httpClient.get<GetResponseProducts>(searchUrl);
-  }
+
 
 }
   interface GetResponseProducts {
