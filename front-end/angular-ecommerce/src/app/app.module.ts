@@ -11,6 +11,7 @@ import { SearchComponent } from './components/search/search.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CartStatusComponent } from './componenets/cart-status/cart-status.component';
 
 //when path matches, create a new instance of component
 //goes most specific to most generic
@@ -31,6 +32,7 @@ const routes: Routes = [
     ProductCategoryMenuComponent,
     SearchComponent,
     ProductDetailsComponent,
+    CartStatusComponent,
 
   ],
   imports: [
