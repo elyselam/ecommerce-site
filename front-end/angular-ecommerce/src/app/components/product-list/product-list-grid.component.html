@@ -43,9 +43,20 @@ passing over {path: 'products/:id', component: ProductDetailsComponent}
               <ngb-pagination [(page)]="thePageNumber"
                               [pageSize]="thePageSize"
                               [collectionSize]="theTotalElements"
+                              [maxSize]="5"
                               (pageChange)="listProducts()"> <!--event-binding, user clicks a page link calls method listProducts()-->
 
               </ngb-pagination>
+              <div class="col-md-3 mt-2" style="text-align: right;">
+                <span class="mr-2">Page Size</span>
+                <select (change)="updatePageSize($event.target.value)">
+                  <option selected="true">5</option>
+                  <option>10</option>
+                  <option>20</option>
+                  <option>50</option>
+                </select>
+
+              </div>
 
             </div>
           </div>
